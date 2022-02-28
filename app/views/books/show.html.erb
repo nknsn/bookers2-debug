@@ -11,7 +11,7 @@
   		<table class='table'>
   		  <tr>
           <td><%= link_to(@book.user) do %>
-            <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
+            <%= image_tag @book.user.get_profile_image,  size:"40x40"  %><br>
             <%= @book.user.name %>
             <% end %>
           </td>
@@ -37,23 +37,27 @@
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
             <% end %>
-            <td>
-              <div>
-              <p>コメント件数：<%= @book.@book_comments.count %></p>
-              <% @book.book_comments.each do |book_comment| %>
-                <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p>
-                <%= book_comment.user.name %>
-                <%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %>
-              <% end %>
-              </div>
 
-              <div>
-              <%= form_with model: [@book, @book_comment] do |f| %>
-                <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-                <%= f.submit "送信する" %>
-               <% end %>
-              </div>
-            </td>
+            <td><div>
+             <p>コメント数：<%= @book.book_comments.count %></p>
+             <% @book.book_comments.each do |book_comment| %>
+               <p><%= image_tag book_comment.user.get_profile_image, size:"40x40" %></p>
+                  <%= book_comment.user.name %>
+                  <%= book_comment.comment %>
+                  <% end %>
+            </div></td>
+      </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <div>
+            <%= form_with model: [@book, @book_comment] do |f| %>
+            <%= f.text_area :comment, rows: '5' %>
+            <%= f.submit "送信" %>
+            <% end %>
+            </div>
+          </td>
         </tr>
       </table>
     </div>

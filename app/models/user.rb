@@ -25,11 +25,11 @@ class User < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-  def follow(user_id)
+  def follow(user)
     relationships.create(followed_id: user_id)
   end
 
-  def unfollow(user_id)
+  def unfollow(user)
     relationships.find_by(followed_id: user_id).destroy
   end
 

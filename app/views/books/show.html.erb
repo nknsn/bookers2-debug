@@ -24,24 +24,15 @@
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}"%></td>
             <% end %>
 
-            <td><div>
-             <p>コメント数：<%= @book.book_comments.count %></p></div></td>
           </tr>
           </table>
 
-      <table>
-        <tr>
-          <td>
-            <div>
-            <%= form_with (model: [@book, @book_comment], id: "book_comment" do |f| %>
-            <%= f.text_field :comment, rows: '5' %>
-            <br>
-            <%= f.submit "送信" %>
-            <% end %>
-            </div>
-          </td>
-        </tr>
-      </table>
+          <div class="book-comments-index">
+            <%= render "book_comments/comment", book: @book %>
+          </div>
+
+          <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
+
     </div>
   </div>
 </div>

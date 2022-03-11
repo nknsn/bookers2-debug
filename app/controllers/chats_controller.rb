@@ -25,7 +25,7 @@ class ChatsController < ApplicationController
 
   private
   def chat_params
-    params.require(:chat).permit(:massage, :room_id)
+    params.require(:chat).permit(:message, :room_id)
   end
 
   def reject_non_related
